@@ -64,7 +64,7 @@ def get_top_list(event, environment, gender, age_category, year, event_category,
 
 HEADERS = ['Rank', 'Mark', 'Competitor', 'DOB', 'Nat', 'Pos', '', 'Venue', 'Date', 'ResultScore']
 
-def process_event(year, event, age_category, best_results_only, track_size, region_type, gender):
+for (year, event, age_category, best_results_only, track_size, region_type, gender) in itertools.product(YEARS, filter(lambda e: e != '100-metres' and e != '10000-metres', EVENTS.keys()), AGE_CATEGORY, BEST_RESULTS_ONLY, TRACK_SIZE, REGION_TYPE, GENDER):
     path = f'data/indoor/{event}/{gender}/{year}-{age_category}-{best_results_only}-{track_size}-{region_type}.csv'
     if not os.path.exists(os.path.dirname(path)):
         os.makedirs(os.path.dirname(path))
